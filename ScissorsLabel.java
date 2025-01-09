@@ -5,22 +5,23 @@ import java.util.Random;
 public class ScissorsLabel extends JLabel {
 
     public ScissorsLabel() {
-        super("(S)");
-        this.speed = new Random().nextInt(3) + 1; // Speed at which Scissors move left to right
-        this.direction = 1; // Indicating left to right movement
-        setFont(new Font("Arial", Font.BOLD, 20));
+        super();
+
+        setIcon(ImageResizer.resizeImage("images/scissors.png", 50, 50));
+
+        this.speed = new Random().nextInt(3) + 1;
+        this.direction = 1;
     }
 
     public void move() {
-        // Move the Scissors left to right
         Point currentPos = getLocation();
-        setLocation(currentPos.x + speed, currentPos.y);
-
-        // Check for bounds and reset position if needed
-        if (currentPos.x + getWidth() > RockFrame.FRAME_WIDTH) {
-            setLocation(0, currentPos.y); // Reset to left side
+        setBounds(currentPos.x + speed, currentPos.y, 50, 50); // Explicitly set bounds
+    
+        if (currentPos.x + 50 > RockFrame.FRAME_WIDTH) {
+            setBounds(0, currentPos.y, 50, 50); // Reset to the left
         }
     }
+    
 
     private int speed;
     private int direction; // Direction for left-right movement

@@ -17,10 +17,12 @@ public class RockLabel extends JLabel {
      * It is set to have zero speed and a static direction.
      */
     public RockLabel() {
-        super("(R)");
-        this.speed = 0; // Rock stays in place
+        super();
+
+        setIcon(ImageResizer.resizeImage("images/rock.png", 50, 50));
+
+        this.speed = 0;
         this.direction = 0;
-        setFont(new Font("Arial", Font.BOLD, 20));
     }
 
     public void move() {

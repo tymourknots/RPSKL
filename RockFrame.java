@@ -85,10 +85,13 @@ public class RockFrame extends JFrame {
      */    
     private void positionShape(JLabel label) {
         Random rand = new Random();
-        int x = rand.nextInt(FRAME_WIDTH - label.getWidth());
-        int y = rand.nextInt(FRAME_HEIGHT - label.getHeight() - factoryPanel.getHeight());
-        label.setBounds(x, y, label.getPreferredSize().width, label.getPreferredSize().height);
+        int labelWidth = 50;  // Fixed width of your labels (match image size)
+        int labelHeight = 50; // Fixed height of your labels (match image size)
+        int x = rand.nextInt(FRAME_WIDTH - labelWidth);
+        int y = rand.nextInt(FRAME_HEIGHT - labelHeight - factoryPanel.getHeight());
+        label.setBounds(x, y, labelWidth, labelHeight);
     }
+    
     
     /**
      * Updates the positions of the shapes and checks for collisions.
@@ -134,14 +137,14 @@ public class RockFrame extends JFrame {
      * @return The type of the shape as a String.
      */
     private String getType(JLabel label) {
-        String text = label.getText();
-        if (text.contains("R")) return "R";
-        if (text.contains("P")) return "P";
-        if (text.contains("S")) return "S";
-        if (text.contains("K")) return "K";
-        if (text.contains("L")) return "L";
+        if (label instanceof RockLabel) return "R";
+        if (label instanceof PaperLabel) return "P";
+        if (label instanceof ScissorsLabel) return "S";
+        if (label instanceof SpockLabel) return "K";
+        if (label instanceof LizardLabel) return "L";
         return "";
     }
+    
     
     /**
      * Checks if two JLabels intersect.
